@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Navigate, Outlet } from "react-router-dom";
 
-function ProtectedRoute() {
+function ProtectedRoute(props) {
   //state
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
   //comportement
   useEffect(() => {
     const checkAuth = async () => {
@@ -13,22 +12,22 @@ function ProtectedRoute() {
           credentials: "include",
         });
         if (response.ok) {
-          setIsAuthenticated(true);
+          props.setIsAuthenticated(true);
         } else {
-          setIsAuthenticated(false);
+          props.setIsAuthenticated(false);
         }
       } catch (error) {
-        setIsAuthenticated(false);
+        props.setIsAuthenticated(false);
         console.log(error);
       }
     };
     checkAuth();
   }, []);
   //render
-  if (isAuthenticated === null){
+  if (props.isAuthenticated === null){
     return <div>Loading ...</div>
   }
-  return isAuthenticated? <Outlet/>:<Navigate to="/getstarted1"/>;
+  return props.isAuthenticated? <Outlet/>:<Navigate to="/getstarted1"/>;
 }
 
 export default ProtectedRoute;

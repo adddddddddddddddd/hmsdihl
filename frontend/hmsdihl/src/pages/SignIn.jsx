@@ -19,7 +19,7 @@ function SignIn(props) {
         <div className="m-auto h-svh w-full  flex">
           <Card header={"Sign In"}>
             <div className="my-12">
-              <SignForm type={"Sign In"} setTargetDate={props.setTargetDate} setConnexionStatus={props.setConnexionStatus} setGoalHours={props.setGoalHours} setGoalMinutes={props.setGoalMinutes}></SignForm>
+              <SignForm  setIsAuthenticated={props.setIsAuthenticated} type={"Sign In"} setTargetDate={props.setTargetDate} setConnexionStatus={props.setConnexionStatus} setGoalHours={props.setGoalHours} setGoalMinutes={props.setGoalMinutes}></SignForm>
             </div>
           </Card>
           <img src={walkingman} alt="Walking man" />

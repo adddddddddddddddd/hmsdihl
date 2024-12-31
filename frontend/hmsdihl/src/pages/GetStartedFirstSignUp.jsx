@@ -65,6 +65,7 @@ function GetStartedFirstSignUp(props) {
       } catch (error) {
         console.error("Erreur de connexion au backend :", error);
       }
+      props.setIsAuthenticated(true)
       window.location.href = "/getstarted2";
     }
     console.log("form submitted");

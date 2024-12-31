@@ -56,6 +56,7 @@ function SignForm(props) {
             credentials: "include",
           });
           if (response.ok) {
+            props.setIsAuthenticated(true)
             const data = await response.json();
             console.log("Données reçues :", data);
             const newDate = new Date(data.time);

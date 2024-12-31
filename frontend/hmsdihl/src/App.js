@@ -1,19 +1,12 @@
 import { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 import FirstHomePage from "./pages/FirstHomePage";
-import SignUp from "./pages/SignUp";
 import SignIn from "./pages/SignIn";
-import HowDoesItWork from "./components/HowDoesItWork";
 import GetStartedFirstSignUp from "./pages/GetStartedFirstSignUp";
 import Dashboard from "./pages/Dashboard";
 import About from "./pages/About";
 import GetStartedSecondRegisterStepsTime from "./pages/GetStartedSecondRegisterStepsTime";
 import GetStartedThirdPage from "./pages/GetStartedThirdPage";
-import Button from "./components/Button";
-import SignForm from "./components/SignForm";
-import TimeForm from "./components/TimeForm";
-import StepsForm from "./components/StepsForm";
-import Nav from "./components/Nav";
 import Parameters from "./pages/Parameters";
 import GetStartedFourthPage from "./pages/GetStartedFourthPage";
 import ProtectedRoute from "./components/ProtectedRoute";
@@ -28,6 +21,8 @@ function App() {
   const [targetDate, setTargetDate] = useState(new Date(9999, 11, 31));
   const [connexionStatus, setConnexionStatus] = useState(true);
   const [realTargetDate, setRealTargetDate] = useState(targetDate);
+  
+  const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   //comportement //////////////////////////////////////////////////////////////////////////////////////////:
 
@@ -207,6 +202,8 @@ function App() {
           path="/signin"
           element={
             <SignIn
+              isAuthenticated={isAuthenticated}
+              setIsAuthenticated={setIsAuthenticated}
               setConnexionStatus={setConnexionStatus}
               setGoalHours={setGoalHours}
               setGoalMinutes={setGoalMinutes}
@@ -214,10 +211,25 @@ function App() {
             />
           }
         />
-        <Route path="/getstarted1" element={<GetStartedFirstSignUp />} />
+        <Route
+          path="/getstarted1"
+          element={
+            <GetStartedFirstSignUp
+              isAuthenticated={isAuthenticated}
+              setIsAuthenticated={setIsAuthenticated}
+            />
+          }
+        />
 
         {/* Routes protégées */}
-        <Route element={<ProtectedRoute />}>
+        <Route
+          element={
+            <ProtectedRoute
+              isAuthenticated={isAuthenticated}
+              setIsAuthenticated={setIsAuthenticated}
+            />
+          }
+        >
           <Route
             path="/dashboard"
             element={
