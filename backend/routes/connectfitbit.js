@@ -14,15 +14,6 @@ const ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 
 const FITBIT_AUTH_URL = `https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=${process.env.CLIENT_ID}&redirect_uri=${process.env.REDIRECT_URI}&scope=activity`;
 
-router.use(
-  cors({
-    origin: "https://hmsdihl.vercel.app/", // Le domaine du front-end
-    credentials: true, // Permet d'envoyer les cookies
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization", "Origin"], // Permet l'en-tête Content-Type
-  })
-);
-
 router.get("/", (req, res) => {
   // Redirige l'utilisateur vers Fitbit pour qu'il s'authentifie et autorise l'accès
   res.redirect(FITBIT_AUTH_URL);

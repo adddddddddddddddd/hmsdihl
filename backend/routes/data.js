@@ -10,15 +10,6 @@ require("dotenv").config();
 const User = require("../models/User");
 router.use(express.json()); //à mettre sur toute les routes à la place de bodyParser
 
-router.use(
-  cors({
-    origin: "https://hmsdihl.vercel.app/", // Le domaine du front-end
-    credentials: true, // Permet d'envoyer les cookies
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization", "Origin"], // Permet l'en-tête Content-Type
-  })
-);
-
 router.get("/time", async (req, res) => {
   try {
     const token = req.cookies.authToken;

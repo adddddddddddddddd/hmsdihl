@@ -11,15 +11,6 @@ const User = require("../models/User");
 const { isValidObjectId } = require("mongoose");
 router.use(express.json()); //à mettre sur toute les routes à la place de bodyParser
 
-router.use(
-  cors({
-    origin: "https://hmsdihl.vercel.app/", // Le domaine du front-end
-    credentials: true, // Permet d'envoyer les cookies
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization", "Origin"], // Permet l'en-tête Content-Type
-  })
-);
-
 ACCESS_TOKEN_SECRET = process.env.ACCESS_TOKEN_SECRET;
 
 router.get("/validate", async (req, res) => {
