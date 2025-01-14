@@ -17,7 +17,7 @@ const PORT = 3000;
 // app.use(bodyParser.json()); //bodyParser est obsolète, on utilisera plutôt app.use(express.json());
 app.use(express.json());
 app.use(cors({
-  origin: 'http://localhost:3001', // Le domaine du front-end
+  origin: ["https://hmsdihl.vercel.app/", 'http://localhost:3001'], // Le domaine du front-end
   credentials: true, // Permet d'envoyer les cookies
   methods: ['GET', 'POST',"PUT","DELETE"],
   allowedHeaders: ['Content-Type'], // Permet l'en-tête Content-Type
