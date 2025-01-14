@@ -7,7 +7,7 @@
       "localhost",
       ".localhost"
     ],
-    "proxy": "https://localhost:3000/"
+    "proxy": "https://hmsdihl-api.onrender.com/"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^5.17.0",
