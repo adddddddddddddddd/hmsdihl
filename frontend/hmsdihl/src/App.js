@@ -21,7 +21,7 @@ function App() {
   const [targetDate, setTargetDate] = useState(new Date(9999, 11, 31));
   const [connexionStatus, setConnexionStatus] = useState(false);
   const [realTargetDate, setRealTargetDate] = useState(targetDate);
-  
+
   const [isAuthenticated, setIsAuthenticated] = useState(null);
 
   //comportement //////////////////////////////////////////////////////////////////////////////////////////:
@@ -52,40 +52,45 @@ function App() {
   };
 
   const getFitbitSteps = async () => {
-    try {
-      const response = await fetch(
-        "https://hmsdihl-api.onrender.com/connectfitbit/user/steps",
-        {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include", // Ajustez selon vos besoins
+    if (connexionStatus) {
+      try {
+        const response = await fetch(
+          "https://hmsdihl-api.onrender.com/connectfitbit/user/steps",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include", // Ajustez selon vos besoins
+          }
+        );
+        if (!response.ok) {
+          throw new Error(`Erreur HTTP: ${response.status}`); // Déclenche une erreur manuellement
         }
-      );
-      if (!response.ok) {
-        throw new Error(`Erreur HTTP: ${response.status}`); // Déclenche une erreur manuellement
+        const data = await response.json();
+        setFitbitSteps(data.steps);
+        console.log("fitbit steps acquired :", data);
+      } catch (error) {
+        console.error("Impossible de récupérer les données:", error.message);
+      } finally {
+        console.log("Requête terminée.");
       }
-      const data = await response.json();
-      setFitbitSteps(data.steps);
-      console.log("fitbit steps acquired :", data);
-    } catch (error) {
-      console.error("Impossible de récupérer les données:", error.message);
-    } finally {
-      console.log("Requête terminée.");
     }
   };
 
   const getTargetDate = async () => {
     if (connexionStatus) {
       try {
-        const response = await fetch("https://hmsdihl-api.onrender.com/data/time", {
-          method: "GET",
-          headers: {
-            "Content-Type": "application/json", // Indique que les données sont en JSON
-          },
-          credentials: "include",
-        });
+        const response = await fetch(
+          "https://hmsdihl-api.onrender.com/data/time",
+          {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json", // Indique que les données sont en JSON
+            },
+            credentials: "include",
+          }
+        );
 
         if (response.ok) {
           const data = await response.json();
