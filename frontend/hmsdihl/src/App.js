@@ -19,7 +19,7 @@ function App() {
   const [goalHours, setGoalHours] = useState(0);
   const [goalMinutes, setGoalMinutes] = useState(0);
   const [targetDate, setTargetDate] = useState(new Date(9999, 11, 31));
-  const [connexionStatus, setConnexionStatus] = useState(true);
+  const [connexionStatus, setConnexionStatus] = useState(false);
   const [realTargetDate, setRealTargetDate] = useState(targetDate);
   
   const [isAuthenticated, setIsAuthenticated] = useState(null);
