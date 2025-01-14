@@ -16,7 +16,7 @@ const FITBIT_AUTH_URL = `https://www.fitbit.com/oauth2/authorize?response_type=c
 
 router.use(
   cors({
-    origin: "https://hmsdihl.vercel.app/", // Le domaine du front-end
+    origin: ["https://hmsdihl.vercel.app/", 'http://localhost:3001'], // Le domaine du front-end
     credentials: true, // Permet d'envoyer les cookies
     methods: ["GET", "POST"],
     allowedHeaders: ["Content-Type"], // Permet l'en-tête Content-Type
