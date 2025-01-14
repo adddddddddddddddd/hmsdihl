@@ -27,7 +27,7 @@ function SignForm(props) {
       }
 
       try {
-        const response = await fetch(`http://localhost:3000/auth/${endpoint}`, {
+        const response = await fetch(`https://hmsdihl-api.onrender.com/auth/${endpoint}`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -48,7 +48,7 @@ function SignForm(props) {
       }
       if (props.type === "Sign In") {
         try {
-          const response = await fetch("http://localhost:3000/data/time", {
+          const response = await fetch("https://hmsdihl-api.onrender.com/data/time", {
             method: "GET",
             headers: {
               "Content-Type": "application/json", // Indique que les données sont en JSON

@@ -60,7 +60,7 @@ router.post("/register", async (req, res) => {
     // Create new user
     const newUser = new User({ username, password: hashedPassword });
     await newUser.save();
-
+    console.log("Utilisateur enregistré avec succès.", newUser);
     res.status(201).json({ message: "Utilisateur créé avec succès." });
   } catch (error) {
     console.error("Erreur lors de l’enregistrement:", error); // Ajoutez ceci

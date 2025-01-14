@@ -18,7 +18,7 @@ function TimeForm(props) {
     event.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:3000/data/time", {
+      const response = await fetch("https://hmsdihl-api.onrender.com/data/time", {
         method: "PUT",
         headers: {
           "Content-Type": "application/json", // Indique que les données sont en JSON

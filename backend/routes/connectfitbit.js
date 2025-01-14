@@ -109,7 +109,7 @@ router.get("/callback", async (req, res) => {
     }
 
     console.log("Tokens Fitbit enregistrés avec succès.");
-    res.redirect(`http://localhost:3001/dashboard?success=true`);
+    res.redirect(`https://hmsdihl.vercel.app/dashboard?success=true`);
   } catch (error) {
     console.error("Erreur :", error.message);
     res.status(500).send("Erreur lors du traitement de la demande.");

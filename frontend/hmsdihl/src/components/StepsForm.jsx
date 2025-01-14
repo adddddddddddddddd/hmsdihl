@@ -11,7 +11,7 @@ function StepsForm(props) {
   const handleStepsInputChange = async (event) => {
     event.preventDefault();
     try {
-      const response = await fetch("http://localhost:3000/data/steps", {
+      const response = await fetch("https://hmsdihl-api.onrender.com/data/steps", {
         method: "PUT", // ou "PUT" selon l'action souhaitée
         headers: {
           "Content-Type": "application/json", // Indique que les données sont en JSON

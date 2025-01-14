@@ -11,7 +11,7 @@ function NavConnected(props) {
   };
   const handleClickLogout = async () => {
     try {
-      const response = await fetch("http://localhost:3000/auth/logout", {
+      const response = await fetch("https://hmsdihl-api.onrender.com/auth/logout", {
         method: "POST",
         credentials: "include", // Nécessaire pour inclure les cookies dans la requête
       });

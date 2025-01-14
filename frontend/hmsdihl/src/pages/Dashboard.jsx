@@ -27,7 +27,7 @@ function Dashboard(props) {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:3000/connectfitbit/user/fitbitinformations",
+          "https://hmsdihl-api.onrender.com/connectfitbit/user/fitbitinformations",
           {
             method: "GET",
             headers: {

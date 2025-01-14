@@ -31,7 +31,7 @@ function App() {
   const getUserSteps = async () => {
     if (connexionStatus) {
       try {
-        const response = await fetch("http://localhost:3000/auth/steps", {
+        const response = await fetch("https://hmsdihl-api.onrender.com/steps", {
           method: "GET",
           credentials: "include", // on utilise des cookies à la place du token
         });
@@ -54,7 +54,7 @@ function App() {
   const getFitbitSteps = async () => {
     try {
       const response = await fetch(
-        "http://localhost:3000/connectfitbit/user/steps",
+        "https://hmsdihl-api.onrender.com/connectfitbit/user/steps",
         {
           method: "GET",
           headers: {
@@ -79,7 +79,7 @@ function App() {
   const getTargetDate = async () => {
     if (connexionStatus) {
       try {
-        const response = await fetch("http://localhost:3000/data/time", {
+        const response = await fetch("https://hmsdihl-api.onrender.com/data/time", {
           method: "GET",
           headers: {
             "Content-Type": "application/json", // Indique que les données sont en JSON
@@ -154,7 +154,7 @@ function App() {
             const updateSteps = async () => {
               try {
                 const response = await fetch(
-                  "http://localhost:3000/data/time",
+                  "https://hmsdihl-api.onrender.com/data/time",
                   {
                     method: "PUT",
                     headers: {

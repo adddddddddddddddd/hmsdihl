@@ -26,7 +26,7 @@ function GetStartedFirstSignUp(props) {
     } else {
       console.log("Données envoyées :", data);
       try {
-        const response = await fetch(`http://localhost:3000/auth/register`, {
+        const response = await fetch(`https://hmsdihl-api.onrender.com/auth/register`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -46,7 +46,7 @@ function GetStartedFirstSignUp(props) {
         console.error("Erreur de connexion au backend :", error);
       }
       try {
-        const response = await fetch(`http://localhost:3000/auth/login`, {
+        const response = await fetch(`https://hmsdihl-api.onrender.com/auth/login`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

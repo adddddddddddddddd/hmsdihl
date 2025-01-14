@@ -7,7 +7,7 @@ function ProtectedRoute(props) {
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch("http://localhost:3000/auth/login", {
+        const response = await fetch("https://hmsdihl-api.onrender.com/auth/login", {
           method: "GET",
           credentials: "include",
         });
