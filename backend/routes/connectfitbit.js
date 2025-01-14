@@ -16,10 +16,10 @@ const FITBIT_AUTH_URL = `https://www.fitbit.com/oauth2/authorize?response_type=c
 
 router.use(
   cors({
-    origin: ["https://hmsdihl.vercel.app/", 'http://localhost:3001'], // Le domaine du front-end
+    origin: "https://hmsdihl.vercel.app/", // Le domaine du front-end
     credentials: true, // Permet d'envoyer les cookies
-    methods: ["GET", "POST"],
-    allowedHeaders: ["Content-Type"], // Permet l'en-tête Content-Type
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization", "Origin"], // Permet l'en-tête Content-Type
   })
 );
 
@@ -90,7 +90,7 @@ router.get("/callback", async (req, res) => {
 
     const tokens = JSON.parse(data);
     const { access_token, refresh_token, expires_in } = tokens;
-    const tokenExpiresAt = new Date(Date.now() + expires_in * 1000)
+    const tokenExpiresAt = new Date(Date.now() + expires_in * 1000);
     // Mise à jour de l'utilisateur
     const updatedUser = await User.findByIdAndUpdate(
       userId,
@@ -193,7 +193,9 @@ router.get("/user/steps", async (req, res) => {
             user.fitbit.steps = steps;
             await user.save();
 
-            res.status(200).json({ message: "Steps updated successfully", steps });
+            res
+              .status(200)
+              .json({ message: "Steps updated successfully", steps });
           } else {
             res
               .status(fitbitRes.statusCode)
