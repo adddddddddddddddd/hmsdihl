@@ -27,9 +27,11 @@ function App() {
   //comportement //////////////////////////////////////////////////////////////////////////////////////////:
 
   // useEffect()
-
+  useEffect(() => {
+    console.log(isAuthenticated);
+  }, [isAuthenticated]);
   const getUserSteps = async () => {
-    if (connexionStatus) {
+    if (isAuthenticated) {
       try {
         const response = await fetch("https://hmsdihl-api.onrender.com/steps", {
           method: "GET",
@@ -52,7 +54,7 @@ function App() {
   };
 
   const getFitbitSteps = async () => {
-    if (connexionStatus) {
+    if (isAuthenticated) {
       try {
         const response = await fetch(
           "https://hmsdihl-api.onrender.com/connectfitbit/user/steps",
@@ -79,7 +81,7 @@ function App() {
   };
 
   const getTargetDate = async () => {
-    if (connexionStatus) {
+    if (isAuthenticated) {
       try {
         const response = await fetch(
           "https://hmsdihl-api.onrender.com/data/time",
