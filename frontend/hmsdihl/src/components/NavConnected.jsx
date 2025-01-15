@@ -1,26 +1,31 @@
 import React from "react";
 import Button from "./Button";
+import { useNavigate } from "react-router-dom";
 
 function NavConnected(props) {
   //state //////////////////////////////////////////////////////////////////////////////////////////////////////
+  const navigate = useNavigate();
 
   //comportement /////////////////////////////////////////////////////////////////////////////////////////////
   const handleClickFitBitConnect = async () => {
     const FITBIT_AUTH_URL = `https://www.fitbit.com/oauth2/authorize?response_type=code&client_id=${process.env.REACT_APP_CLIENT_ID}&redirect_uri=${process.env.REACT_APP_REDIRECT_URI}&scope=activity`;
-    window.location.href = FITBIT_AUTH_URL;
+    navigate({ FITBIT_AUTH_URL });
   };
   const handleClickLogout = async () => {
     try {
-      const response = await fetch("https://hmsdihl-api.onrender.com/auth/logout", {
-        method: "POST",
-        credentials: "include", // Nécessaire pour inclure les cookies dans la requête
-      });
+      const response = await fetch(
+        "https://hmsdihl-api.onrender.com/auth/logout",
+        {
+          method: "POST",
+          credentials: "include", // Nécessaire pour inclure les cookies dans la requête
+        }
+      );
 
       if (response.ok) {
         console.log("Déconnexion réussie !");
         // Rediriger l'utilisateur ou nettoyer l'état de l'application
-        props.setConnexionStatus(false)
-        window.location.href = "/signin";
+        props.setConnexionStatus(false);
+        navigate("/signin");
       } else {
         console.error("Erreur lors de la déconnexion");
       }
@@ -39,13 +44,15 @@ function NavConnected(props) {
           </h1>
         </div>
         <div className="flex">
-          { !props.fitbitConnexionStatus ? <Button
-            text={"text-text"}
-            buttonHoverInfo={"hover:text-accent "}
-            onClick={handleClickFitBitConnect}
-          >
-            Connect to Fitbit
-          </Button>: null}
+          {!props.fitbitConnexionStatus ? (
+            <Button
+              text={"text-text"}
+              buttonHoverInfo={"hover:text-accent "}
+              onClick={handleClickFitBitConnect}
+            >
+              Connect to Fitbit
+            </Button>
+          ) : null}
           <Button
             text={
               "text-text bg-secondary-500 hover:mt-2 hover:mb-4 text-red-500"
