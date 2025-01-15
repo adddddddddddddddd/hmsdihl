@@ -71,7 +71,9 @@ function SignForm(props) {
             props.setGoalMinutes(newDate.getMinutes());
             props.setTargetDate(newDate);
             props.setConnexionStatus(true);
-            return <Navigate to="/dashboard" />;
+            if (props.isAuthenticated) {
+              return <Navigate to="/dashboard" />;
+            }
           } else {
             console.error("Erreur lors de l'envoi :", response.status);
           }
