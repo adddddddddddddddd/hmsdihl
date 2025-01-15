@@ -10,6 +10,8 @@ function SignForm(props) {
     username: "",
     password: "",
   });
+  const navigate = useNavigate();
+
   //comportement
   const isEmail = (email) =>
     /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(email);
@@ -71,9 +73,7 @@ function SignForm(props) {
             props.setGoalMinutes(newDate.getMinutes());
             props.setTargetDate(newDate);
             props.setConnexionStatus(true);
-            if (props.isAuthenticated) {
-              return <Navigate to="/dashboard" />;
-            }
+            navigate("/dashboard");
           } else {
             console.error("Erreur lors de l'envoi :", response.status);
           }
