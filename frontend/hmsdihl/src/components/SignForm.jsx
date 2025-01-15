@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import FormInputText from "./FormInputText";
 import Button from "./Button";
 import ClosingCross from "./ClosingCross";
+import { Navigate, Outlet, useNavigate } from "react-router-dom";
 
 function SignForm(props) {
   //state
@@ -27,14 +28,17 @@ function SignForm(props) {
       }
 
       try {
-        const response = await fetch(`https://hmsdihl-api.onrender.com/auth/${endpoint}`, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          credentials: "include", // Important si le backend utilise des cookies
-          body: JSON.stringify(data),
-        });
+        const response = await fetch(
+          `https://hmsdihl-api.onrender.com/auth/${endpoint}`,
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            credentials: "include", // Important si le backend utilise des cookies
+            body: JSON.stringify(data),
+          }
+        );
         console.log(response);
 
         if (response.ok) {
@@ -48,23 +52,26 @@ function SignForm(props) {
       }
       if (props.type === "Sign In") {
         try {
-          const response = await fetch("https://hmsdihl-api.onrender.com/data/time", {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json", // Indique que les données sont en JSON
-            },
-            credentials: "include",
-          });
+          const response = await fetch(
+            "https://hmsdihl-api.onrender.com/data/time",
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json", // Indique que les données sont en JSON
+              },
+              credentials: "include",
+            }
+          );
           if (response.ok) {
-            props.setIsAuthenticated(true)
+            props.setIsAuthenticated(true);
             const data = await response.json();
             console.log("Données reçues :", data);
             const newDate = new Date(data.time);
             props.setGoalHours(newDate.getHours());
             props.setGoalMinutes(newDate.getMinutes());
-            props.setTargetDate(newDate)
-            props.setConnexionStatus(true)
-            window.location.href = "/dashboard";
+            props.setTargetDate(newDate);
+            props.setConnexionStatus(true);
+            return <Navigate to="/dashboard" />;
           } else {
             console.error("Erreur lors de l'envoi :", response.status);
           }
