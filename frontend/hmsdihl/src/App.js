@@ -227,22 +227,7 @@ function App() {
             />
           }
         />
-        <Route
-          path="/dashboard"
-          element={
-            <Dashboard
-              fitbitSteps={fitbitSteps}
-              setConnexionStatus={setConnexionStatus}
-              setTime={setTargetDate}
-              setGoalHours={setGoalHours}
-              setGoalMinutes={setGoalMinutes}
-              steps={steps}
-              setSteps={setSteps}
-              goalHours={goalHours}
-              goalMinutes={goalMinutes}
-            />
-          }
-        />
+
         {/* Routes protégées */}
         <Route
           element={
@@ -252,6 +237,22 @@ function App() {
             />
           }
         >
+          <Route
+            path="/dashboard"
+            element={
+              <Dashboard
+                fitbitSteps={fitbitSteps}
+                setConnexionStatus={setConnexionStatus}
+                setTime={setTargetDate}
+                setGoalHours={setGoalHours}
+                setGoalMinutes={setGoalMinutes}
+                steps={steps}
+                setSteps={setSteps}
+                goalHours={goalHours}
+                goalMinutes={goalMinutes}
+              />
+            }
+          />
           <Route
             path="/getstarted2"
             element={
