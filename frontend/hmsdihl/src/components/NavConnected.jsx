@@ -10,23 +10,24 @@ function NavConnected(props) {
     window.location.href = FITBIT_AUTH_URL;
   };
   const handleClickLogout = async () => {
-    try {
-      const response = await fetch("https://hmsdihl-api.onrender.com/auth/logout", {
-        method: "POST",
-        credentials: "include", // Nécessaire pour inclure les cookies dans la requête
-      });
+    // try {
+    //   const response = await fetch("https://hmsdihl-api.onrender.com/auth/logout", {
+    //     method: "POST",
+    //     credentials: "include", // Nécessaire pour inclure les cookies dans la requête
+    //   });
 
-      if (response.ok) {
-        console.log("Déconnexion réussie !");
-        // Rediriger l'utilisateur ou nettoyer l'état de l'application
-        props.setConnexionStatus(false)
-        window.location.href = "/signin";
-      } else {
-        console.error("Erreur lors de la déconnexion");
-      }
-    } catch (error) {
-      console.error("Erreur réseau :", error);
-    }
+    //   if (response.ok) {
+    //     console.log("Déconnexion réussie !");
+    //     // Rediriger l'utilisateur ou nettoyer l'état de l'application
+    //     props.setConnexionStatus(false)
+    //     window.location.href = "/signin";
+    //   } else {
+    //     console.error("Erreur lors de la déconnexion");
+    //   }
+    // } catch (error) {
+    //   console.error("Erreur réseau :", error);
+    // }
+    console.log("Vercel a du mal avec ce bouton.");
   };
 
   // render ///////////////////////////////////////////////////////////////////////////////////////////////////
