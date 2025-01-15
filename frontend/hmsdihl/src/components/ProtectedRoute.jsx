@@ -9,11 +9,14 @@ function ProtectedRoute({ setIsAuthenticated, isAuthenticated }) {
   // Fonction de vérification d'authentification avec optimisation (useCallback)
   const checkAuth = useCallback(async () => {
     try {
-      setLoading(true);  // Déclenche le chargement
-      const response = await fetch("https://hmsdihl-api.onrender.com/auth/login", {
-        method: "GET",
-        credentials: "include",
-      });
+      setLoading(true); // Déclenche le chargement
+      const response = await fetch(
+        `https://hmsdihl-api.onrender.com/auth/login?cacheBust=${Date.now()}`,
+        {
+          method: "GET",
+          credentials: "include",
+        }
+      );
 
       if (response.ok) {
         setIsAuthenticated(true);
@@ -32,7 +35,7 @@ function ProtectedRoute({ setIsAuthenticated, isAuthenticated }) {
   useEffect(() => {
     checkAuth();
     return () => {
-      setLoading(false);  // Nettoyage si le composant est démonté
+      setLoading(false); // Nettoyage si le composant est démonté
     };
   }, [checkAuth]);
 
